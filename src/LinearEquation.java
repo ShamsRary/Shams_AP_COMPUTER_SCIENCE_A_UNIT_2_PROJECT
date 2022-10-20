@@ -23,6 +23,7 @@ public LinearEquation(int x1, int y1, int x2, int y2)
 /* Calculates and returns distance between (x1, y1) and (x2, y2), rounded to
    the nearest hundredth */
         public double distance(){
+        //uses the pythagren therom to find distance.
         double distance = Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
         //distance = ((int) (distance * 100 + 0.5)/100.0);
         distance = roundedToHundredth(distance);
@@ -36,7 +37,7 @@ public LinearEquation(int x1, int y1, int x2, int y2)
            (x2, y2), rounded to the nearest hundredth */
         public double yIntercept(){
             double y_intercept = ((double) y1) - ((slope() * (double) x1));
-
+            // y = mx +b sloved for b
             //y_intercept = ((int)((y_intercept * 100 + 0.5)/100.0));
             y_intercept = roundedToHundredth(y_intercept);
             return y_intercept;
@@ -46,6 +47,7 @@ public LinearEquation(int x1, int y1, int x2, int y2)
         /* Calculates and returns the slope of the line between (x1, y1) and
            (x2, y2), rounded to the nearest hundredth */
         public double slope(){
+            //slope formula
             double slope = ((double) y2 - (double) y1) / ((double) x2 - (double) x1);
             slope = roundedToHundredth(slope);
             //slope = roundedToHundredth(slope);
@@ -82,24 +84,33 @@ public LinearEquation(int x1, int y1, int x2, int y2)
          */
         public String equation() {
             double slope = slope();
+            // is used to obtain a wide varity of slopes
             String slope1 = "";
+            String equation1 = "";
             double y_intercept = yIntercept();
 
+            //if horizontal function
+            if (y1 == y2) {
+                return("Horizontal line y = " + y1);
+            }
 
+                //checks to see if the number has decmials
                 if (slope == (double) ((int) slope)) {
                     slope1 += Math.abs((int) slope);
+                    //checks to see if the slope = 1 or -1
                     if (slope == -1 || slope == 1) {
-                        slope1 = " ";
+                        slope1 = "";
                     }
                 } else {
+                    //regular slope
                     slope1 += Math.abs(((int) ((double) y2 - (double) y1))) + "/" + Math.abs((int) ((double) x2 - (double) x1));
                 }
-
+                    //postive or negative values for slope
                 String symbol = "";
                 if (slope < 0) {
                     symbol += "-";
                 }
-
+                // type of y value or no y value
                 String symbol2 = "";
                 if (y_intercept < 0) {
                     symbol2 += " - ";
@@ -107,21 +118,32 @@ public LinearEquation(int x1, int y1, int x2, int y2)
                 if (y_intercept > 0) {
                     symbol2 += " + ";
                 }
-
+                if (y_intercept == 0){
+                    symbol2 = "";
+                    equation1 = ("These coordinates make an equation of: y = " + symbol + slope1 + "x");
+                }
+                else {
+                    equation1 = ("These coordinates make an equation of: y = " + symbol + slope1 + "x" + symbol2 + Math.abs(y_intercept));
+                }
                 y_intercept = Math.abs(yIntercept());
-            return ("These coordinates make an equation of: y = " + symbol + slope1 + "x" + symbol2 + Math.abs(y_intercept));
+            return equation1;
+                    //("These coordinates make an equation of: y = " + symbol + slope1 + "x" + symbol2 + Math.abs(y_intercept));
 
             }
+
+
 
 
 
         /* Returns a String of the coordinate point on the line that has the given x value, with
            both x and y coordinates as decimals to the nearest hundredth, e.g (-5.0, 6.75) */
         public String coordinateForX(double xValue){
+            //uses slope and the new coed to find y value
             double slope = slope();
             double y_intercept = yIntercept();
             double yCord = slope * xValue + y_intercept;
             yCord = roundedToHundredth(yCord);
+            xValue = roundedToHundredth(xValue);
             return("(" + xValue + ", " + yCord + ")");
         }
 
@@ -133,6 +155,7 @@ public LinearEquation(int x1, int y1, int x2, int y2)
             HINT:  the Math.round method can help with this!
          */
         public double roundedToHundredth(double toRound){
+            //rounds to the hundreths
             double Round = (toRound * 100);
             Round = Math.round(Round);
             Round = Round / 100;
@@ -154,12 +177,20 @@ public LinearEquation(int x1, int y1, int x2, int y2)
           equation(), slope(), yIntercept(), distance().
 
           */
-        public void lineInfo(){
-            System.out.println("The coordinates are " + "(" + x1 + ", " + y1 + ")" + " and " + "(" + x2 + ", " + y2 + ")");
-            System.out.println(equation());
-            System.out.println("The slope of this line is: " + slope());
-            System.out.println("The yIntercept of this line is: " + yIntercept());
-            System.out.println("The distance of these 2 points are " + distance());
+        public String lineInfo(){
+
+            //will print he following statments
+
+//            System.out.println("The coordinates are " + "(" + x1 + ", " + y1 + ")" + " and " + "(" + x2 + ", " + y2 + ")");
+//            System.out.println(equation());
+//            System.out.println("The slope of this line is: " + slope());
+//            System.out.println("The yIntercept of this line is: " + yIntercept());
+//            System.out.println("The distance of these 2 points are " + distance());
+            String all = "The coordinates are " + "(" + x1 + ", " + y1 + ")" + " and " + "(" + x2 + ", " + y2 + ")" + "\n" + equation() + "\n" + "The slope of this line is: " + slope()
+                    + "\n" + "The yIntercept of this line is: " + yIntercept() + "\n" +"The distance of these 2 points are " + distance();
+
+            return all;
+
 
         }
 }

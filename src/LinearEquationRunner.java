@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class LinearEquationRunner {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Welcome ");
+        System.out.println("Welcome user ");
         //gains the coordinate info for the slope.
         System.out.println("Enter coordinate 1 ");
         String num1 = scan.nextLine();
@@ -21,21 +21,18 @@ public class LinearEquationRunner {
 //        System.out.println(num1y);
 //        System.out.println(num2x);
 //        System.out.println(num2y);
+
+
         if (num1x == num2x) {
-            System.out.println("Vertical line x = " + num1);
+            System.out.println ("Vertical line x = " + num1x);
+        }
+        else {
+            LinearEquation obj = new LinearEquation(num1x, num1y, num2x, num2y);
+            System.out.println(obj.lineInfo());
+            System.out.println("Enter a value for x: ");
+            double point = scan.nextDouble();
+            System.out.println(obj.coordinateForX(point));
         }
 
-        else if (num1y == num2y) {
-            System.out.println("Horizontal line y = " + num1y);
-        }
-
-        else
-        {
-        LinearEquation test1 = new LinearEquation(num1x, num1y, num2x, num2y);
-        test1.lineInfo();
-        System.out.println("Enter a value for x: ");
-        double point = scan.nextDouble();
-        System.out.println(test1.coordinateForX(point));
-        }
     }
 }
