@@ -21,11 +21,21 @@ public class LinearEquationRunner {
 //        System.out.println(num1y);
 //        System.out.println(num2x);
 //        System.out.println(num2y);
+        if (num1x == num2x) {
+            System.out.println("Vertical line x = " + num1);
+        }
 
+        else if (num1y == num2y) {
+            System.out.println("Horizontal line y = " + num1y);
+        }
+
+        else
+        {
         LinearEquation test1 = new LinearEquation(num1x, num1y, num2x, num2y);
         test1.lineInfo();
         System.out.println("Enter a value for x: ");
         double point = scan.nextDouble();
-        test1.pointer(point);
+        System.out.println(test1.coordinateForX(point));
+        }
     }
 }
