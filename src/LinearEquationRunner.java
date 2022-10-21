@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class LinearEquationRunner {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        //sss
         System.out.println("Welcome user ");
         //gains the coordinate info for the slope.
         System.out.println("Enter coordinate 1 ");
