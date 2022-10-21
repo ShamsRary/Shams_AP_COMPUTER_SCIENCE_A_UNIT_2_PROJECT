@@ -4,6 +4,7 @@ public class LinearEquation{
         private int y1;
         private int x2;
         private int y2;
+        //ss
 
 
         /* Creates a LinearEquation object */
